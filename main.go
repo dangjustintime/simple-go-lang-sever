@@ -47,7 +47,6 @@ func main() {
 
 	// set up router
 	router := mux.NewRouter()
-	router.HandleFunc("/", helloWorldHandler).Methods("GET")
 	router.HandleFunc("/users", app.getUsersHandler).Methods("GET")
 	router.HandleFunc("/users", app.createUserHandler).Methods("POST")
 	http.Handle("/", router)
@@ -56,10 +55,6 @@ func main() {
 	if err := http.ListenAndServe(":8080", nil); err != nil {
 		fmt.Println("Failed to start server:", err)
 	}
-}
-
-func helloWorldHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "hello world!")
 }
 
 func (app *App) getUsersHandler(w http.ResponseWriter, r *http.Request) {
